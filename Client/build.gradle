@@ -28,7 +28,7 @@ dependencies {
 
     compile 'com.jakewharton.timber:timber:2.4.+'
 
-    compile(name:'monitoringlib', ext:'aar')
+    compile(name: 'monitoringlib', ext: 'aar')
 
     compile 'com.nhaarman.listviewanimations:lib-core:3.0.0'
     compile 'com.nhaarman.listviewanimations:lib-manipulation:3.0.0'

@@ -2,28 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="at.marki.Client">
 
-    <!-- GCM START -->
-    <permission
-        android:name="at.marki.Client.permission.C2D_MESSAGE"
-        android:protectionLevel="signature"/>
-
     <permission
         android:name="at.marki.Client.BROADCASTNOTIFY"
         android:label="test_label"
         android:protectionLevel="signature">
     </permission>
 
-    <uses-permission android:name="at.marki.Client.permission.C2D_MESSAGE"/>
-    <!-- App receives GCM messages. -->
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-    <!-- GCM requires a Google account. -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!-- GCM START -->
     <!-- Keeps the processor from sleeping when a message is received. -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="at.marki.Client.BROADCASTNOTIFY"/>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <permission
+        android:name="at.marki.Client.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"/>
+
+    <uses-permission android:name="at.marki.Client.permission.C2D_MESSAGE"/>
     <!-- GCM END -->
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -58,7 +59,7 @@
             <intent-filter>
                 <!-- Receives the actual messages. -->
                 <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <category android:name="at.rablzt.nrlogic"/>
+                <category android:name="at.marki.Client"/>
             </intent-filter>
         </receiver>
         <!--
@@ -70,7 +71,7 @@
             <intent-filter>
                 <!-- Receives the registration id. -->
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-                <category android:name="at.rablzt.nrlogic"/>
+                <category android:name="at.marki.Client"/>
             </intent-filter>
         </receiver>
 

@@ -28,7 +28,7 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.SimpleSwipeUndoAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.TimedUndoAdapter;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -96,21 +96,13 @@ public class FragmentMain extends Fragment {
 		menu.clear();
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.menu_main, menu);
-
-//		if (isRefreshing) {
-//			//if we're refreshing, show the animation
-//			MenuItem item = menu.findItem(R.id.menu_get_message);
-//			item.setActionView(R.layout.refresh_action_image);
-//			ImageView iv = (ImageView) item.getActionView().findViewById(R.id.iv_refresh_action_image);
-//			((AnimationDrawable) iv.getDrawable()).start();
-//		}
 	}
 
 	private void setAdapter() {
 		baseAdapter = new AdapterMainFragment(this);
 		baseAdapter.setData();
-		SimpleSwipeUndoAdapter simpleSwipeUndoAdapter = new SimpleSwipeUndoAdapter(baseAdapter, getActivity(), new MyOnDismissCallback(baseAdapter));
-		AlphaInAnimationAdapter animAdapter = new AlphaInAnimationAdapter(simpleSwipeUndoAdapter);
+		TimedUndoAdapter timedUndoAdapter = new TimedUndoAdapter(baseAdapter, getActivity(), new MyOnDismissCallback(baseAdapter));
+		AlphaInAnimationAdapter animAdapter = new AlphaInAnimationAdapter(timedUndoAdapter);
 		animAdapter.setAbsListView(messagesListView);
 		assert animAdapter.getViewAnimator() != null;
 		animAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
@@ -118,7 +110,7 @@ public class FragmentMain extends Fragment {
 	}
 
 	private void updateAdapter() {
-		baseAdapter.notifyDataSetChanged();
+		baseAdapter.setData();
 	}
 
 	//--------------------------------------------------------------------------------------------------

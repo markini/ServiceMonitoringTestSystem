@@ -15,11 +15,12 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.UndoAd
 import at.marki.Client.R;
 import marki.at.Client.utils.Data;
 import marki.at.Client.utils.Message;
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**
  * Created by marki on 30.10.13.
  */
-public class AdapterMainFragment extends ArrayAdapter<Message> implements UndoAdapter {
+public class AdapterMainFragment extends ArrayAdapter<Message> implements UndoAdapter, StickyListHeadersAdapter {
 
 	private final LayoutInflater inflater;
 	private Context context;
@@ -30,10 +31,12 @@ public class AdapterMainFragment extends ArrayAdapter<Message> implements UndoAd
 		this.context = fragment.getActivity();
 	}
 
-	public void setData(){
-		for(Message message : Data.getMessages(context)){
+	public void setData() {
+		clear();
+		for (Message message : Data.getMessages(context)) {
 			add(message);
 		}
+		notifyDataSetChanged();
 	}
 
 	@NonNull
@@ -78,5 +81,31 @@ public class AdapterMainFragment extends ArrayAdapter<Message> implements UndoAd
 	@Override
 	public long getItemId(int position) {
 		return getItem(position).hashCode();
+	}
+
+	class HeaderViewHolder {
+		TextView text;
+	}
+
+	@Override
+	public View getHeaderView(int i, View convertView, ViewGroup viewGroup) {
+		HeaderViewHolder holder;
+		if (convertView == null) {
+			holder = new HeaderViewHolder();
+			convertView = inflater.inflate(R.layout.header_lv_main, viewGroup, false);
+			holder.text = (TextView) convertView.findViewById(R.id.header);
+			convertView.setTag(holder);
+		} else {
+			holder = (HeaderViewHolder) convertView.getTag();
+		}
+		// set header text as first char in name
+		CharSequence headerChar = getItem(i).dateString;
+		holder.text.setText(headerChar);
+		return convertView;
+	}
+
+	@Override
+	public long getHeaderId(int i) {
+		return getItem(i).dateString.hashCode();
 	}
 }
