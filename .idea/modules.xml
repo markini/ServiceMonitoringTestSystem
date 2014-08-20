@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Client/Client.iml" filepath="$PROJECT_DIR$/Client/Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/ServiceMonitoringTestSystem.iml" filepath="$PROJECT_DIR$/ServiceMonitoringTestSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monitoringlib/monitoringlib.iml" filepath="$PROJECT_DIR$/monitoringlib/monitoringlib.iml" />
     </modules>
   </component>
 </project>
