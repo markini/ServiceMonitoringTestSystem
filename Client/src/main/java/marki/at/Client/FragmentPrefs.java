@@ -5,7 +5,7 @@ import android.preference.PreferenceFragment;
 
 import at.marki.Client.R;
 
-class FragmentPrefs extends PreferenceFragment {
+public class FragmentPrefs extends PreferenceFragment {
 
 	public static final String TAG = "at.marki.FragmentPrefs";
 
