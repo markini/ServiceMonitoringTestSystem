@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/list"
+        android:layout_alignParentTop="true"
+        android:transcriptMode="normal"
+        android:background="@android:color/black"
+        android:scrollbarStyle="outsideOverlay"
+        android:choiceMode="singleChoice"
+        android:focusable="false"
+        android:drawSelectorOnTop="true"
+        android:fastScrollEnabled="false"
+        android:fastScrollAlwaysVisible="false"/>
+</RelativeLayout>
+

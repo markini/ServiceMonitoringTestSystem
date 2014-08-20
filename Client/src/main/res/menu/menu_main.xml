@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item
+			android:id="@+id/menu_get_message"
+			android:icon="@drawable/ic_action_get_message"
+			android:showAsAction="ifRoom|withText"
+			android:title="Get Message"/>
+	<item
+			android:id="@+id/menu_register_gcm"
+			android:icon="@drawable/ic_action_register_on_server"
+			android:showAsAction="ifRoom|withText"
+			android:title="Register GCM"/>
+	<item
+			android:id="@+id/menu_settings"
+			android:icon="@drawable/ic_action_preferences"
+			android:showAsAction="never"
+			android:title="Preferences"/>
+	<item
+			android:id="@+id/menu_clear"
+			android:icon="@drawable/ic_action_clear"
+			android:showAsAction="ifRoom|withText"
+			android:title="Clear"/>
+	<item
+			android:id="@+id/menu_start_monitor"
+			android:icon="@drawable/ic_action_get_message"
+			android:showAsAction="never"
+			android:title="Start Monitoring"/>
+	<item
+			android:id="@+id/menu_stop_monitor"
+			android:icon="@drawable/ic_action_get_message"
+			android:showAsAction="never"
+			android:title="Stop Monitoring"/>
+	<item
+			android:id="@+id/menu_create_mock_messages"
+			android:icon="@drawable/ic_action_get_message"
+			android:showAsAction="never"
+			android:title="Create mock messages"/>
+	<item
+			android:id="@+id/menu_log_dialog"
+			android:icon="@drawable/ic_action_get_message"
+			android:showAsAction="never"
+			android:title="Show log"/>
+</menu>

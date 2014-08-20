@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MTClient</string>
+
+	<plurals name="countdown_seconds">
+		<item quantity="one">Dismissing in 1...</item>
+		<item quantity="other">Dismissing in %d...</item>
+	</plurals>
+
+	<string name="countdown_dismissing">Dismissing</string>
+</resources>

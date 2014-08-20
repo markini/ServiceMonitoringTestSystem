@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+            android:title="Serversettings">
+
+        <EditTextPreference
+                android:key="tag_server_ip"
+                android:title="Server IP"
+                android:summary="Enter the ip of the server"
+                android:dialogTitle="Enter IP"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

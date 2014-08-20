@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intent_filter_message_receive">intent.filter.marki.message.receiver</string>
+	<string name="intent_filter_sms_receive">intent.filter.marki.sms.receiver</string>
+	<string name="server_sms_number">+43664123456789</string>
+</resources>

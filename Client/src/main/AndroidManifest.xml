@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="at.marki.Client">
+
+    <!-- GCM START -->
+    <permission
+        android:name="at.marki.Client.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"/>
+
+    <permission
+        android:name="at.marki.Client.BROADCASTNOTIFY"
+        android:label="test_label"
+        android:protectionLevel="signature">
+    </permission>
+
+    <uses-permission android:name="at.marki.Client.permission.C2D_MESSAGE"/>
+    <!-- App receives GCM messages. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="at.marki.Client.BROADCASTNOTIFY"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- GCM END -->
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- SMS -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <!-- SMS END -->
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher"
+        android:name="marki.at.Client.ClientApplication">
+        <activity
+            android:name="marki.at.Client.MainActivity"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!--
+            BroadcastReceiver that will receive (message) intents from GCM
+        -->
+        <receiver
+            android:name="marki.at.Client.gcm.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="at.rablzt.nrlogic"/>
+            </intent-filter>
+        </receiver>
+        <!--
+            BroadcastReceiver that will receive registration intents from GCM
+        -->
+        <receiver
+            android:name="marki.at.Client.gcm.GcmRegistrationReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <category android:name="at.rablzt.nrlogic"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="marki.at.Client.receiver.StaticReceiverMessages"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="at.marki.Client.BROADCASTNOTIFY">
+            <intent-filter android:priority="20">
+                <action android:name="intent.filter.marki.message.receiver"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- SMS RECEIVER START -->
+        <receiver
+            android:name="marki.at.Client.receiver.StaticSmsReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="20">
+                <action android:name="intent.filter.marki.sms.receiver"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- BroadcastReceiver that listens for incoming SMS messages -->
+        <receiver
+            android:name="marki.at.Client.receiver.SmsReceiver"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+        <!-- SMS RECEIVER END -->
+
+
+        <receiver
+            android:name="marki.at.Client.monitoring.MonitorGcmCheck"/>
+
+        <receiver
+            android:name="marki.at.Client.monitoring.MonitorServerPing"/>
+
+        <receiver android:name="marki.at.Client.monitoring.MonitorConnectivity"/>
+
+        <service android:name="marki.at.Client.download.GetNewDataService"/>
+        <service android:name="marki.at.Client.service.StateHandler"/>
+        <service android:name="marki.at.Client.service.RegisterGcmIdService"/>
+        <service android:name="marki.at.servicemonitoring.MonitorThisService"/>
+
+    </application>
+</manifest>
